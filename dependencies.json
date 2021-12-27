@@ -13,7 +13,7 @@
     "data": [
       {
         "src": "https://github.com/alyrow/simple-jsonrpc-js/raw/master/dist/simple-jsonrpc-js.min.js",
-        "dest": "simple-jsonrpc-js.min.js"
+        "dest": "json-rpc.min.js"
       }
     ]
   },
@@ -354,6 +354,134 @@
       {
         "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/visibility.min.js",
         "dest": "semantic/dist/components/visibility.min.js"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/themes/basic/assets/fonts/icons.eot",
+        "dest": "semantic/dist/themes/basic/assets/fonts/icons.eot"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/themes/basic/assets/fonts/icons.svg",
+        "dest": "semantic/dist/themes/basic/assets/fonts/icons.svg"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/themes/basic/assets/fonts/icons.ttf",
+        "dest": "semantic/dist/themes/basic/assets/fonts/icons.ttf"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/themes/basic/assets/fonts/icons.woff",
+        "dest": "semantic/dist/themes/basic/assets/fonts/icons.woff"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/themes/default/assets/fonts/brand-icons",
+        "dest": "semantic/dist/themes/default/assets/fonts/brand-icons"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/themes/default/assets/fonts/brand-icons.eot",
+        "dest": "semantic/dist/themes/default/assets/fonts/brand-icons.eot"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/themes/default/assets/fonts/brand-icons.svg",
+        "dest": "semantic/dist/themes/default/assets/fonts/brand-icons.svg"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/themes/default/assets/fonts/brand-icons.ttf",
+        "dest": "semantic/dist/themes/default/assets/fonts/brand-icons.ttf"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/themes/default/assets/fonts/brand-icons.woff",
+        "dest": "semantic/dist/themes/default/assets/fonts/brand-icons.woff"
+      },
+      {
+        "src": "https://github.com/fomantic/Fomantic-UI/raw/develop/dist/themes/default/assets/fonts/brand-icons.woff2",
+        "dest": "semantic/dist/themes/default/assets/fonts/brand-icons.woff2"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/themes/default/assets/fonts/icons",
+        "dest": "semantic/dist/themes/default/assets/fonts/icons"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/themes/default/assets/fonts/icons.eot",
+        "dest": "semantic/dist/themes/default/assets/fonts/icons.eot"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/themes/default/assets/fonts/icons.svg",
+        "dest": "semantic/dist/themes/default/assets/fonts/icons.svg"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/themes/default/assets/fonts/icons.ttf",
+        "dest": "semantic/dist/themes/default/assets/fonts/icons.ttf"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/themes/default/assets/fonts/icons.woff",
+        "dest": "semantic/dist/themes/default/assets/fonts/icons.woff"
+      },
+      {
+        "src": "https://github.com/fomantic/Fomantic-UI/raw/develop/dist/themes/default/assets/fonts/icons.woff2",
+        "dest": "semantic/dist/themes/default/assets/fonts/icons.woff2"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/themes/default/assets/fonts/outline-icons",
+        "dest": "semantic/dist/themes/default/assets/fonts/outline-icons"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/themes/default/assets/fonts/outline-icons.eot",
+        "dest": "semantic/dist/themes/default/assets/fonts/outline-icons.eot"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/themes/default/assets/fonts/outline-icons.svg",
+        "dest": "semantic/dist/themes/default/assets/fonts/outline-icons.svg"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/themes/default/assets/fonts/outline-icons.ttf",
+        "dest": "semantic/dist/themes/default/assets/fonts/outline-icons.ttf"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/themes/default/assets/fonts/outline-icons.woff",
+        "dest": "semantic/dist/themes/default/assets/fonts/outline-icons.woff"
+      },
+      {
+        "src": "https://github.com/fomantic/Fomantic-UI/raw/develop/dist/themes/default/assets/fonts/outline-icons.woff2",
+        "dest": "semantic/dist/themes/default/assets/fonts/outline-icons.woff2"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/themes/default/assets/images/flags.png",
+        "dest": "semantic/dist/themes/default/assets/images/flags.png"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/themes/github/assets/fonts/octicons-local.ttf",
+        "dest": "semantic/dist/themes/github/assets/fonts/octicons-local.ttf"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/themes/github/assets/fonts/octicons.svg",
+        "dest": "semantic/dist/themes/github/assets/fonts/octicons.svg"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/themes/github/assets/fonts/octicons.ttf",
+        "dest": "semantic/dist/themes/github/assets/fonts/octicons.ttf"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/themes/github/assets/fonts/octicons.woff",
+        "dest": "semantic/dist/themes/github/assets/fonts/octicons.woff"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/themes/material/assets/fonts/icons",
+        "dest": "semantic/dist/themes/material/assets/fonts/icons"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/themes/material/assets/fonts/icons.eot",
+        "dest": "semantic/dist/themes/material/assets/fonts/icons.eot"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/themes/material/assets/fonts/icons.svg",
+        "dest": "semantic/dist/themes/material/assets/fonts/icons.svg"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/themes/material/assets/fonts/icons.ttf",
+        "dest": "semantic/dist/themes/material/assets/fonts/icons.ttf"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/themes/material/assets/fonts/icons.woff",
+        "dest": "semantic/dist/themes/material/assets/fonts/icons.woff"
       }
     ]
   }
