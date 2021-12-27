@@ -1,0 +1,16 @@
+{
+  "name": "cyrel-web",
+  "version": "1.0.0",
+  "description": "cyrel-web set-up tool.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "alyrow",
+  "license": "ISC",
+  "dependencies": {
+    "node-fetch": "^2.6.6",
+    "progress": "^2.0.3"
+  }
+}

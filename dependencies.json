@@ -1,0 +1,360 @@
+[
+  {
+    "name": "Jquery",
+    "data": [
+      {
+        "src": "https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js",
+        "dest": "jquery.min.js"
+      }
+    ]
+  },
+  {
+    "name": "Json-rpc 2.0 client",
+    "data": [
+      {
+        "src": "https://github.com/alyrow/simple-jsonrpc-js/raw/master/dist/simple-jsonrpc-js.min.js",
+        "dest": "simple-jsonrpc-js.min.js"
+      }
+    ]
+  },
+  {
+    "name": "Svg.js",
+    "data": [
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/svg.js/2.5.0/svg.min.js",
+        "dest": "svg.min.js"
+      }
+    ]
+  },
+  {
+    "name": "Svg pan zoom",
+    "data": [
+      {
+        "src": "https://github.com/bumbu/svg-pan-zoom/raw/3.6.1/dist/svg-pan-zoom.min.js",
+        "dest": "svg-pan-zoom.min.js"
+      }
+    ]
+  },
+  {
+    "name": "Canvg",
+    "data": [
+      {
+        "src": "https://unpkg.com/canvg@3.0.4/lib/umd.js",
+        "dest": "umd.js"
+      }
+    ]
+  },
+  {
+    "name": "Formantic ui",
+    "data": [
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/semantic.min.js",
+        "dest": "semantic/dist/semantic.min.js"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/semantic.min.css",
+        "dest": "semantic/dist/semantic.min.css"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/accordion.min.css",
+        "dest": "semantic/dist/components/accordion.min.css"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/accordion.min.js",
+        "dest": "semantic/dist/components/accordion.min.js"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/ad.min.css",
+        "dest": "semantic/dist/components/ad.min.css"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/api.min.js",
+        "dest": "semantic/dist/components/api.min.js"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/breadcrumb.min.css",
+        "dest": "semantic/dist/components/breadcrumb.min.css"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/button.min.css",
+        "dest": "semantic/dist/components/button.min.css"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/calendar.min.css",
+        "dest": "semantic/dist/components/calendar.min.css"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/calendar.min.js",
+        "dest": "semantic/dist/components/calendar.min.js"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/card.min.css",
+        "dest": "semantic/dist/components/card.min.css"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/checkbox.min.css",
+        "dest": "semantic/dist/components/checkbox.min.css"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/checkbox.min.js",
+        "dest": "semantic/dist/components/checkbox.min.js"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/comment.min.css",
+        "dest": "semantic/dist/components/comment.min.css"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/container.min.css",
+        "dest": "semantic/dist/components/container.min.css"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/dimmer.min.css",
+        "dest": "semantic/dist/components/dimmer.min.css"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/dimmer.min.js",
+        "dest": "semantic/dist/components/dimmer.min.js"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/divider.min.css",
+        "dest": "semantic/dist/components/divider.min.css"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/dropdown.min.css",
+        "dest": "semantic/dist/components/dropdown.min.css"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/dropdown.min.js",
+        "dest": "semantic/dist/components/dropdown.min.js"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/embed.min.css",
+        "dest": "semantic/dist/components/embed.min.css"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/embed.min.js",
+        "dest": "semantic/dist/components/embed.min.js"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/emoji.min.css",
+        "dest": "semantic/dist/components/emoji.min.css"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/feed.min.css",
+        "dest": "semantic/dist/components/feed.min.css"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/flag.min.css",
+        "dest": "semantic/dist/components/flag.min.css"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/form.min.css",
+        "dest": "semantic/dist/components/form.min.css"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/form.min.js",
+        "dest": "semantic/dist/components/form.min.js"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/grid.min.css",
+        "dest": "semantic/dist/components/grid.min.css"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/header.min.css",
+        "dest": "semantic/dist/components/header.min.css"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/icon.min.css",
+        "dest": "semantic/dist/components/icon.min.css"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/image.min.css",
+        "dest": "semantic/dist/components/image.min.css"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/input.min.css",
+        "dest": "semantic/dist/components/input.min.css"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/item.min.css",
+        "dest": "semantic/dist/components/item.min.css"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/label.min.css",
+        "dest": "semantic/dist/components/label.min.css"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/list.min.css",
+        "dest": "semantic/dist/components/list.min.css"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/loader.min.css",
+        "dest": "semantic/dist/components/loader.min.css"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/menu.min.css",
+        "dest": "semantic/dist/components/menu.min.css"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/message.min.css",
+        "dest": "semantic/dist/components/message.min.css"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/modal.min.css",
+        "dest": "semantic/dist/components/modal.min.css"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/modal.min.js",
+        "dest": "semantic/dist/components/modal.min.js"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/nag.min.css",
+        "dest": "semantic/dist/components/nag.min.css"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/nag.min.js",
+        "dest": "semantic/dist/components/nag.min.js"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/placeholder.min.css",
+        "dest": "semantic/dist/components/placeholder.min.css"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/popup.min.css",
+        "dest": "semantic/dist/components/popup.min.css"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/popup.min.js",
+        "dest": "semantic/dist/components/popup.min.js"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/progress.min.css",
+        "dest": "semantic/dist/components/progress.min.css"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/progress.min.js",
+        "dest": "semantic/dist/components/progress.min.js"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/rail.min.css",
+        "dest": "semantic/dist/components/rail.min.css"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/rating.min.css",
+        "dest": "semantic/dist/components/rating.min.css"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/rating.min.js",
+        "dest": "semantic/dist/components/rating.min.js"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/reset.min.css",
+        "dest": "semantic/dist/components/reset.min.css"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/reveal.min.css",
+        "dest": "semantic/dist/components/reveal.min.css"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/search.min.css",
+        "dest": "semantic/dist/components/search.min.css"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/search.min.js",
+        "dest": "semantic/dist/components/search.min.js"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/segment.min.css",
+        "dest": "semantic/dist/components/segment.min.css"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/shape.min.css",
+        "dest": "semantic/dist/components/shape.min.css"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/shape.min.js",
+        "dest": "semantic/dist/components/shape.min.js"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/sidebar.min.css",
+        "dest": "semantic/dist/components/sidebar.min.css"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/sidebar.min.js",
+        "dest": "semantic/dist/components/sidebar.min.js"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/site.min.css",
+        "dest": "semantic/dist/components/site.min.css"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/site.min.js",
+        "dest": "semantic/dist/components/site.min.js"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/slider.min.css",
+        "dest": "semantic/dist/components/slider.min.css"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/slider.min.js",
+        "dest": "semantic/dist/components/slider.min.js"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/state.min.js",
+        "dest": "semantic/dist/components/state.min.js"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/statistic.min.css",
+        "dest": "semantic/dist/components/statistic.min.css"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/step.min.css",
+        "dest": "semantic/dist/components/step.min.css"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/sticky.min.css",
+        "dest": "semantic/dist/components/sticky.min.css"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/sticky.min.js",
+        "dest": "semantic/dist/components/sticky.min.js"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/tab.min.css",
+        "dest": "semantic/dist/components/tab.min.css"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/tab.min.js",
+        "dest": "semantic/dist/components/tab.min.js"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/table.min.css",
+        "dest": "semantic/dist/components/table.min.css"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/text.min.css",
+        "dest": "semantic/dist/components/text.min.css"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/toast.min.css",
+        "dest": "semantic/dist/components/toast.min.css"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/toast.min.js",
+        "dest": "semantic/dist/components/toast.min.js"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/transition.min.css",
+        "dest": "semantic/dist/components/transition.min.css"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/transition.min.js",
+        "dest": "semantic/dist/components/transition.min.js"
+      },
+      {
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/components/visibility.min.js",
+        "dest": "semantic/dist/components/visibility.min.js"
+      }
+    ]
+  }
+]

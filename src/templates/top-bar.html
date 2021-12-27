@@ -1,0 +1,36 @@
+<div class="ui left vertical menu sidebar">
+    <a for-each="pages" as="page" run-if="page.showInMenu" href="{{page.url}}" class="item">
+        <img src="{{page.icon}}" alt="" class="icon" style="display: inline-block !important; width: 2.5em;">
+        {{page.name}}
+    </a>
+</div>
+
+<div class="ui container">
+    <div class="ui large secondary menu">
+        <div class="item">
+            <i if="menu" class="sidebar icon"></i>
+        </div>
+        <div class="item">
+            <img src="{{page_icon}}" alt="" style="margin-right: 15px">
+            {{page_title}}
+        </div>
+
+        <div class="right menu">
+            <a class="ui icon item" onclick="UiCore.switchTheme()">
+                <i class="adjust icon"></i>
+            </a>
+            <div if="logged" class="ui icon item dropdown">
+                <i class="text user icon"></i>
+                <div class="menu">
+                    <a class="item" href="groups.html">Mes Groupes</a>
+                    <div if="serviceWorker" class="item" id="sw" style="display: none;">Mettre à jour</div>
+                    <div class="divider"></div>
+                    <a class="item" onclick="TopBar.logout()" id="logout">
+                        <i class="sign out alternate icon"></i>
+                        Déconnexion
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

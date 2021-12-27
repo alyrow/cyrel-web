@@ -1,0 +1,7 @@
+.idea
+/config
+node_modules
+/dist
+/src/images/logos/cyrel_long.svg
+/src/images/logos/cyrel_long_dark.svg
+/src/images/logos/cyrel_square.svg
