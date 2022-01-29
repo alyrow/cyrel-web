@@ -1,0 +1,21 @@
+<div class="ui floating message">
+    <div id="--avg" class="ui right horizontal label"></div>
+    <h2>{{name}}</h2>
+    <div class="ui icon buttons">
+        <a id="button-modify" class="ui button"><i class="pen icon"></i></a>
+        <a id="button-delete" class="ui negative button"><i class="trash icon"></i></a>
+    </div>
+</div>
+
+<div for-each="subjects" as="subject" class="ui container segment">
+    <div id="avg-{{subject.name}}" class="ui right ribbon label"></div>
+    <h3>{{subject.name}}</h3>
+    <div class="meta" style="margin-bottom: 2vh">
+        <span>Coefficient : {{subject.coef}}</span>
+    </div>
+
+    <div class="ui two column stackable grid">
+        <subject-marks id="subject-{{subject.name}}"></subject-marks>
+    </div>
+
+</div>

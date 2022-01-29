@@ -1,0 +1,16 @@
+<div for-each="marks" as="mark" class="column">
+    <div class="ui card" style="width: 100%">
+        <div class="content">
+            <div class="header">{{mark.name}}</div>
+            <div class="meta">
+            <span>
+                Coefficient : {{mark.coef}}
+            </span>
+            </div>
+            <p></p>
+            <div id="subject-{{subject}}-{{mark.name}}" class="ui input">
+                <input type="text" placeholder="Votre note">
+            </div>
+        </div>
+    </div>
+</div>

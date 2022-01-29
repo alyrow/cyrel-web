@@ -36,5 +36,13 @@
     "menu": true,
     "showInMenu": false,
     "icon": "/images/user-edit.svg"
+  },
+  {
+    "name": "Dans la sauce ?",
+    "url": "/in-the-sauce.html",
+    "topBar": true,
+    "menu": true,
+    "showInMenu": true,
+    "icon": "/images/logos/cyrel_square-128.png"
   }
 ]

@@ -484,5 +484,14 @@
         "dest": "semantic/dist/themes/material/assets/fonts/icons.woff"
       }
     ]
+  },
+  {
+    "name": "JSON editor",
+    "data": [
+      {
+        "src": "https://github.com/alyrow/json-editor/releases/download/v0.7.28-2/jsoneditor.js",
+        "dest": "jsoneditor.js"
+      }
+    ]
   }
 ]
