@@ -6,6 +6,8 @@ const fetch = require("node-fetch");
 const writeFile = fs.writeFile;
 const promisify = require("util").promisify;
 const writeFilePromise = promisify(writeFile);
+const chokidar = require("chokidar");
+const { spawn } = require('child_process');
 
 class RessourcesGenerator {
     static #exclude = [
@@ -126,6 +128,9 @@ class Arguments {
                     case "dist":
                         result.action = "dist";
                         break;
+                    case "dev":
+                        result.action = "dev";
+                        break;
                     case "help":
                         result.action = "help";
                         break;
@@ -143,20 +148,10 @@ class Arguments {
 
 const args = Arguments.parse(process.argv.slice(2));
 
-switch (args.action) {
-    case "help":
-        console.log("cyrel-web set-up tool.");
-        console.log("Arguments:");
-        console.log("  - env:[environment] - Set the environment can be debug or release.");
-        console.log("  - conf:[path]       - Set the config file.");
-        console.log("Commands:");
-        console.log("  - help              - Show this page.");
-        console.log("  - dist              - Generate the website.");
-        break;
-    case "dist":
-        const configuration = require(args.config);
-        const root = path.join("dist", args.environment);
-        fs.mkdirSync(path.join(root, "dependencies"), {recursive: true});
+
+function dist(configuration, root) {
+    fs.mkdirSync(path.join(root, "dependencies"), {recursive: true});
+    return new Promise((resolve, reject) => {
         Dependencies.downloadDependencies(configuration.dependencies, path.join(root, "dependencies"))
             .then(() => {
                 return RessourcesGenerator.getAllFiles("src")
@@ -179,8 +174,65 @@ switch (args.action) {
                 fs.writeFileSync(path.join(root, "js", "api.js"), fs.readFileSync(path.join(root, "js", "api.js")).toString().replace("__BACKEND_URL__", configuration.backend));
                 console.log("Done!");
                 console.log("Generating `ressources.json`...");
-                RessourcesGenerator.generate(root, path.join(root, "ressources.json")).then(() => console.log("Finished!"));
+                RessourcesGenerator.generate(root, path.join(root, "ressources.json")).then(() => resolve());
             });
+    });
+
+}
+
+switch (args.action) {
+    case "help":
+        console.log("cyrel-web set-up tool.");
+        console.log("Arguments:");
+        console.log("  - env:[environment] - Set the environment can be debug or release.");
+        console.log("  - conf:[path]       - Set the config file.");
+        console.log("Commands:");
+        console.log("  - help              - Show this page.");
+        console.log("  - dist              - Generate the website.");
+        console.log("  - dev               - Run a local webserver on 8080 for dev.");
+        break;
+    case "dist":
+        dist(require(args.config), path.join("dist", args.environment)).then(() => console.log("Dist finished"));
+        break;
+    case "dev":
+        const configuration = require(args.config);
+        const root = path.join("dist", "debug");
+        dist(configuration, root).then(() => {
+            const watcher = chokidar.watch("src", {persistent: true});
+            watcher.on("ready", () => {
+                console.log("Ready to watch changes")
+                watcher
+                    .on("add", file => {
+                        console.log(`File ${file} has been added`);
+                        fs.copyFileSync(file, path.join(root, file.slice(3)));
+                        fs.writeFileSync(path.join(root, "js", "api.js"), fs.readFileSync(path.join(root, "js", "api.js")).toString().replace("__BACKEND_URL__", configuration.backend));
+                        RessourcesGenerator.generate(root, path.join(root, "ressources.json"));
+                    })
+                    .on("change", file => {
+                        console.log(`File ${file} has been changed`);
+                        fs.copyFileSync(file, path.join(root, file.slice(3)));
+                        fs.writeFileSync(path.join(root, "js", "api.js"), fs.readFileSync(path.join(root, "js", "api.js")).toString().replace("__BACKEND_URL__", configuration.backend));
+                        RessourcesGenerator.generate(root, path.join(root, "ressources.json"));
+                    })
+                    .on('unlink', file => {
+                        console.log(`File ${file} has been removed`);
+                        fs.rmSync(path.join(root, file.slice(3)));
+                        RessourcesGenerator.generate(root, path.join(root, "ressources.json"));
+                    })
+                    .on('addDir', dir => {
+                        console.log(`Directory ${dir} has been added`);
+                        fs.mkdirSync(path.join(root, dir.slice(3)), {recursive: true});
+                        RessourcesGenerator.generate(root, path.join(root, "ressources.json"));
+                    })
+                    .on('unlinkDir', dir => {
+                        console.log(`Directory ${dir} has been removed`);
+                        fs.rmdirSync(path.join(root, dir.slice(3)));
+                        RessourcesGenerator.generate(root, path.join(root, "ressources.json"));
+                    });
+                console.log("Starting http-server")
+                const server = spawn("node_modules/http-server/bin/http-server", [`${root}`], {stdio: [process.stdin, process.stdout, process.stderr]});
+            });
+        });
         break;
 }
 

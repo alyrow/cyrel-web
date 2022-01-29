@@ -4,13 +4,16 @@
   "description": "cyrel-web set-up tool.",
   "main": "index.js",
   "scripts": {
+    "dev": "node index.js conf:./config/conf.js dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "alyrow",
   "license": "ISC",
   "dependencies": {
-    "node-fetch": "^2.6.6",
+    "chokidar": "^3.5.3",
+    "http-server": "^14.1.0",
+    "node-fetch": "^2.6.7",
     "progress": "^2.0.3"
   }
 }
