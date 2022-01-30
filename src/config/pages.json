@@ -43,6 +43,7 @@
     "topBar": true,
     "menu": true,
     "showInMenu": true,
-    "icon": "/images/logos/cyrel_square-128.png"
+    "icon": "/images/cysauceKetshup.svg",
+    "darkIcon": "/images/cysauceMustard.svg"
   }
 ]
