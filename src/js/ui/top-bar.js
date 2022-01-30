@@ -47,11 +47,12 @@ class TopBar {
             setTimeout(handleTouchMove, 500, evt)
         }, false);
 
-        pagesConf.forEach(page => {
-            if (document.location.pathname.indexOf(page.url) === 0 || (page.url.indexOf("/index.html") !== -1 &&
-                document.location.pathname.indexOf(page.url.replace("/index.html", "/")) === 0))
-                thisPage = page;
-        });
+        for (let i = 0; i < pagesConf.length; i++) {
+            if (document.location.pathname.indexOf(pagesConf[i].url) === 0 || (pagesConf[i].url.indexOf("/index.html") !== -1 &&
+                document.location.pathname.indexOf(pagesConf[i].url.replace("/index.html", "/")) === 0))
+                thisPage = pagesConf[i];
+            if (UiCore.dark && pagesConf[i].darkIcon) pagesConf[i].icon = pagesConf[i].darkIcon;
+        }
 
         new Template("top-bar", {
             "page_title": title,
