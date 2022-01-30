@@ -9,6 +9,7 @@ class TopBar {
         let thisPage = null;
         let xDown = null;
         let yDown = null;
+        let jSidebar = null;
 
         const getTouches = (evt) => {
             return evt.touches ||             // browser API
@@ -28,25 +29,49 @@ class TopBar {
 
             if (xDown > visualViewport.width / 15) return;
 
+            const sidebar = document.getElementsByClassName("sidebar icon").item(null);
+
             let xUp = evt.touches[0].clientX;
             let yUp = evt.touches[0].clientY;
 
             let xDiff = xDown - xUp;
             let yDiff = yDown - yUp;
 
-            if (evt.touches.length === 1 && visualViewport.scale === 1 && Math.abs(xDiff) > Math.abs(yDiff)) {/*most significant*/
-                if (xDiff < 0) { // swipe left
-                    document.getElementsByClassName("sidebar icon").item(null).click()
+            for (let i = 0; i < evt.changedTouches.length; i++) {
+                xUp = evt.changedTouches[i].clientX;
+                yUp = evt.changedTouches[i].clientY;
+
+                xDiff = xDown - xUp;
+                yDiff = yDown - yUp;
+
+                if (Math.abs(xDiff) < 3 * visualViewport.width / 15) {
+                    const ratio = Math.abs(xDiff) / (3 * visualViewport.width / 15);
+                    sidebar.style.boxShadow = `0 0 0 ${ratio * 50}px rgba(0, ${ratio * 200}, 0, ${ratio * 0.3})`
+                } else {
+                    xDown = null;
+                    yDown = null;
+                    sidebar.style.boxShadow = `0 0 0 0px rgba(0, 0, 0, 0)`
+                    if (evt.touches.length === 1 && visualViewport.scale === 1 && Math.abs(xDiff) > Math.abs(yDiff)) {/*most significant*/
+                        if (xDiff < 0) { // swipe left
+                            jSidebar = $('.ui.sidebar').sidebar({ closable: false }).sidebar('show');
+                        }
+                    }
+                    break;
                 }
             }
-
-            xDown = null;
-            yDown = null;
         };
 
         document.addEventListener('touchstart', handleTouchStart, false);
-        document.addEventListener('touchmove', function (evt) {
-            setTimeout(handleTouchMove, 500, evt)
+        document.addEventListener('touchmove', handleTouchMove, false);
+        document.addEventListener('touchend', () => {
+            document.getElementsByClassName("sidebar icon").item(null).style.boxShadow = `0 0 0 0px rgba(0, 0, 0, 0)`
+            if (jSidebar) {
+                document.querySelector(".pusher.dimmed").onclick = () => {
+                    document.querySelector(".pusher.dimmed").onclick = undefined;
+                    jSidebar.sidebar('hide');
+                    jSidebar = null;
+                }
+            }
         }, false);
 
         for (let i = 0; i < pagesConf.length; i++) {
