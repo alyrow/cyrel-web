@@ -26,13 +26,15 @@ class TopBar {
                 return;
             }
 
+            if (xDown > visualViewport.width / 15) return;
+
             let xUp = evt.touches[0].clientX;
             let yUp = evt.touches[0].clientY;
 
             let xDiff = xDown - xUp;
             let yDiff = yDown - yUp;
 
-            if (Math.abs(xDiff) > Math.abs(yDiff)) {/*most significant*/
+            if (evt.touches.length === 1 && visualViewport.scale === 1 && Math.abs(xDiff) > Math.abs(yDiff)) {/*most significant*/
                 if (xDiff < 0) { // swipe left
                     document.getElementsByClassName("sidebar icon").item(null).click()
                 }
