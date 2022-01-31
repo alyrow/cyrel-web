@@ -122,7 +122,7 @@ window.addEventListener("load", () => {
             const registration = await navigator.serviceWorker.ready;
             try {
                 registration.periodicSync.register('update-cache', {
-                    minInterval: 30 * 60 * 1000,
+                    minInterval: 10 * 3600 * 1000,
                 });
             } catch (err) {
                 console.error(err.name, err.message);
