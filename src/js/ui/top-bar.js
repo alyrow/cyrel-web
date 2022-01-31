@@ -44,7 +44,7 @@ class TopBar {
                 xDiff = xDown - xUp;
                 yDiff = yDown - yUp;
 
-                if (Math.abs(xDiff) < 3 * visualViewport.width / 15) {
+                if (Math.abs(xDiff) < visualViewport.width / 4) {
                     const ratio = Math.abs(xDiff) / (3 * visualViewport.width / 15);
                     sidebar.style.boxShadow = `0 0 0 ${ratio * 50}px rgba(0, ${ratio * 200}, 0, ${ratio * 0.3})`
                 } else {
