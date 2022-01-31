@@ -124,11 +124,27 @@ class TopBar {
                                 if (msg.update) {
                                     console.log("Update available");
                                     console.log("Updating...");
-                                    result.update();
+                                    result.update().then(() => {
+                                        console.log("Update finished!");
+                                        $('body').toast({
+                                            class: 'success',
+                                            title: 'Application mise à jour !',
+                                            message: 'Veillez rafraichir la page pour utiliser la dernière version.'
+                                        });
+                                    });
                                 }
                             });
                         }
                         elem.style.display = "block";
+                        caches.open("res").then(cache => {
+                            cache.match("/ressources.json").then(response => {
+                                const expire = new Date(response.headers.get("date"));
+                                expire.setDate(expire.getDate() + 4);
+                                if (expire < new Date()) {
+                                    elem.click();
+                                }
+                            });
+                        });
                     }
                 }
             }
