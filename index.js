@@ -7,7 +7,9 @@ const writeFile = fs.writeFile;
 const promisify = require("util").promisify;
 const writeFilePromise = promisify(writeFile);
 const chokidar = require("chokidar");
-const { spawn } = require('child_process');
+const { spawn, exec } = require('child_process');
+
+const VERSION = "0.1";
 
 class RessourcesGenerator {
     static #exclude = [
@@ -173,8 +175,22 @@ function dist(configuration, root) {
                 console.log("Setting up backend url...");
                 fs.writeFileSync(path.join(root, "js", "api.js"), fs.readFileSync(path.join(root, "js", "api.js")).toString().replace("__BACKEND_URL__", configuration.backend));
                 console.log("Done!");
-                console.log("Generating `ressources.json`...");
-                RessourcesGenerator.generate(root, path.join(root, "ressources.json")).then(() => resolve());
+                console.log("Creating version file...");
+                exec("git log -1 --format=%cd --date=raw", (error, stdout, stderr) => {
+                    if (error) {
+                        console.error(`error: ${error.message}`);
+                        return;
+                    }
+                    if (stderr) {
+                        console.error(`stderr: ${stderr}`);
+                        return;
+                    }
+                    const version = VERSION + "." + stdout.split(" ")[0];
+                    fs.writeFileSync(path.join(root, "version"), version);
+                    console.log("Done!");
+                    console.log("Generating `ressources.json`...");
+                    RessourcesGenerator.generate(root, path.join(root, "ressources.json")).then(() => resolve());
+                });
             });
     });
 

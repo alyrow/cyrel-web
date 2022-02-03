@@ -126,11 +126,13 @@ class TopBar {
                                     console.log("Updating...");
                                     result.update().then(() => {
                                         console.log("Update finished!");
-                                        $('body').toast({
-                                            class: 'success',
-                                            displayTime: 0,
-                                            title: 'Application mise à jour !',
-                                            message: 'Veillez rafraichir la page pour utiliser la dernière version.'
+                                        fetch("/version").then(res => res.text()).then(version => {
+                                            $('body').toast({
+                                                class: 'success',
+                                                displayTime: 0,
+                                                title: `Application mise à jour vers la version ${version} !`,
+                                                message: 'Veillez rafraichir la page pour utiliser la dernière version.'
+                                            });
                                         });
                                     });
                                 }
