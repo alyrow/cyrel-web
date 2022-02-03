@@ -128,6 +128,7 @@ class TopBar {
                                         console.log("Update finished!");
                                         $('body').toast({
                                             class: 'success',
+                                            displayTime: 0,
                                             title: 'Application mise à jour !',
                                             message: 'Veillez rafraichir la page pour utiliser la dernière version.'
                                         });
