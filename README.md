@@ -16,7 +16,8 @@ Create the main configuration file, which looks like this:
 module.exports = {
     dependencies: require("../dependencies.json"), // Supplied
     backend: "some url here",                      // Not supplied
-    departments: require("./departments.json")     // Not supplied
+    departments: require("./departments.json"),    // Not supplied
+    client_id: integer                             // Not supplied
 }
 ```
 

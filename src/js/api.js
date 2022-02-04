@@ -178,6 +178,52 @@ class Api {
             });
     }
 
+    /**
+     * Get server stored user config
+     * @type {(onSuccess: function, onFailure: function) => void}
+     * @param onSuccess Callback with the config
+     * @param onFailure When an error occur
+     */
+    client_configs_get(onSuccess, onFailure) {
+        this.rpc.call("client_configs_get", {client_id: __CLIENT_ID__}, window.localStorage.getItem("__"))
+            .then(res => onSuccess(JSON.parse(res)))
+            .catch(err => {
+                onFailure(err);
+                console.error(err);
+            });
+    }
+
+    /**
+     * Set server stored user config
+     * @type {(config: any, onSuccess: function, onFailure: function) => void}
+     * @param config Config to store
+     * @param onSuccess Success
+     * @param onFailure When an error occur
+     */
+    client_configs_set(config, onSuccess, onFailure) {
+        this.rpc.call("client_configs_set", {client_id: __CLIENT_ID__, config: JSON.stringify(config)}, window.localStorage.getItem("__"))
+            .then(res => onSuccess(res))
+            .catch(err => {
+                onFailure(err);
+                console.error(err);
+            });
+    }
+
+    /**
+     * Get server time
+     * @type {(onSuccess: function, onFailure: function) => void}
+     * @param onSuccess Callback with the time
+     * @param onFailure When an error occur
+     */
+    time(onSuccess, onFailure) {
+        this.rpc.call("time", {})
+            .then(res => onSuccess(res))
+            .catch(err => {
+                onFailure(err);
+                console.error(err);
+            });
+    }
+
     static checkIfLoggedAndAct(api) {
         const needLogin = document.querySelector('meta[name="logged"]').content === "1";
         if (!needLogin) return;

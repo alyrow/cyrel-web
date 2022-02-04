@@ -9,7 +9,7 @@ const writeFilePromise = promisify(writeFile);
 const chokidar = require("chokidar");
 const { spawn, exec } = require('child_process');
 
-const VERSION = "0.1";
+const VERSION = "0.2";
 
 class RessourcesGenerator {
     static #exclude = [
@@ -177,6 +177,7 @@ function dist(configuration, root) {
                 console.log("Done!");
                 console.log("Setting up backend url...");
                 fs.writeFileSync(path.join(root, "js", "api.js"), fs.readFileSync(path.join(root, "js", "api.js")).toString().replace("__BACKEND_URL__", configuration.backend));
+                fs.writeFileSync(path.join(root, "js", "api.js"), fs.readFileSync(path.join(root, "js", "api.js")).toString().replaceAll("__CLIENT_ID__", configuration.client_id));
                 console.log("Done!");
                 console.log("Creating version file...");
                 exec("git log -1 --format=%cd --date=raw", (error, stdout, stderr) => {
@@ -235,12 +236,14 @@ switch (args.action) {
                         console.log(`File ${file} has been added`);
                         fs.copyFileSync(file, path.join(root, file.slice(3)));
                         fs.writeFileSync(path.join(root, "js", "api.js"), fs.readFileSync(path.join(root, "js", "api.js")).toString().replace("__BACKEND_URL__", configuration.backend));
+                        fs.writeFileSync(path.join(root, "js", "api.js"), fs.readFileSync(path.join(root, "js", "api.js")).toString().replaceAll("__CLIENT_ID__", configuration.client_id));
                         RessourcesGenerator.generate(root, path.join(root, "ressources.json"));
                     })
                     .on("change", file => {
                         console.log(`File ${file} has been changed`);
                         fs.copyFileSync(file, path.join(root, file.slice(3)));
                         fs.writeFileSync(path.join(root, "js", "api.js"), fs.readFileSync(path.join(root, "js", "api.js")).toString().replace("__BACKEND_URL__", configuration.backend));
+                        fs.writeFileSync(path.join(root, "js", "api.js"), fs.readFileSync(path.join(root, "js", "api.js")).toString().replaceAll("__CLIENT_ID__", configuration.client_id));
                         RessourcesGenerator.generate(root, path.join(root, "ressources.json"));
                     })
                     .on('unlink', file => {

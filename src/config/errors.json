@@ -22,5 +22,9 @@
   "UnknownDepartment": {
     "code": 5,
     "message": "Le département fournit est inconnu"
+  },
+  "UnknownClient": {
+    "code": 6,
+    "message": "Le client fournit est inconnu"
   }
 }
