@@ -126,6 +126,7 @@ class TopBar {
                                     console.log("Updating...");
                                     result.update().then(() => {
                                         console.log("Update finished!");
+                                        localStorage.setItem("changelog", "1");
                                         fetch("/version").then(res => res.text()).then(version => {
                                             $('body').toast({
                                                 class: 'success',

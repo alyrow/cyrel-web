@@ -136,6 +136,23 @@ window.addEventListener("load", () => {
 
         setTimeout(register, 5000);
     }
+
+    if (localStorage.getItem("changelog") === "1") {
+        localStorage.setItem("changelog", "0");
+        fetch("/changelog.json").then(res => res.json()).then(changelog => {
+            if (changelog.exist) {
+                $('body').modal({
+                    title: 'Notes de mise à jour',
+                    closeIcon: false,
+                    content: changelog.content,
+                    actions: [{
+                        text: 'OK',
+                        class: 'green'
+                    }]
+                }).modal('show');
+            }
+        });
+    }
 });
 
 window.addEventListener('online', () => {

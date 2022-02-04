@@ -107,7 +107,8 @@ class Arguments {
         const result = {
             environment: "release",
             config: "./conf.js",
-            action: null
+            action: null,
+            changelog: null
         };
         for (let i = 0; i < args.length; i++) {
             if (args[i].indexOf("env:") === 0) {
@@ -123,6 +124,8 @@ class Arguments {
                 }
             } else if (args[i].indexOf("conf:") === 0)
                 result.config = args[i].slice(5);
+            else if (args[i].indexOf("changelog:") === 0)
+                result.changelog = args[i].slice(10);
             else if (result.action)
                 throw "An action is already specified.";
             else {
@@ -188,6 +191,15 @@ function dist(configuration, root) {
                     const version = VERSION + "." + stdout.split(" ")[0];
                     fs.writeFileSync(path.join(root, "version"), version);
                     console.log("Done!");
+                    console.log("Generating `changelog.json`...");
+                    const changelog = {};
+                    if (args.changelog) {
+                        changelog.exist = true;
+                        changelog.content = fs.readFileSync(args.changelog, {encoding: "utf8"});
+                    } else
+                        changelog.exist = false;
+                    fs.writeFileSync(path.join(root, "changelog.json"), JSON.stringify(changelog));
+                    console.log("Done!");
                     console.log("Generating `ressources.json`...");
                     RessourcesGenerator.generate(root, path.join(root, "ressources.json")).then(() => resolve());
                 });
@@ -202,6 +214,7 @@ switch (args.action) {
         console.log("Arguments:");
         console.log("  - env:[environment] - Set the environment can be debug or release.");
         console.log("  - conf:[path]       - Set the config file.");
+        console.log("  - changelog:[path]  - Set the changelog path.");
         console.log("Commands:");
         console.log("  - help              - Show this page.");
         console.log("  - dist              - Generate the website.");
