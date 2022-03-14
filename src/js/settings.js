@@ -1,13 +1,15 @@
 class Settings {
     #conf = {}
+    #all = {}
 
     constructor() {
         Config.loadConfig("settings", async settings => {
-            console.log(settings);
             let needSync = false;
             let needReload = false;
             await new Promise(resolve => {
                 Api.backend.client_configs_get(async success => {
+                    this.#all = success;
+                    success = success.settings;
                     for (const group of settings) {
                         for (const s of group.settings) {
                             this.#conf[s.path] = {};
@@ -43,7 +45,10 @@ class Settings {
                     resolve();
                 }, err => console.error(err));
             });
-            if (needSync) Api.backend.client_configs_set(this.#conf, () => {if (needReload) document.location.reload();}, err => console.error(err));
+            if (needSync) {
+                this.#all.settings = this.#conf;
+                Api.backend.client_configs_set(this.#all, () => {if (needReload) document.location.reload();}, err => console.error(err));
+            }
             if (!needSync && needReload) document.location.reload();
         });
     }
@@ -63,7 +68,8 @@ class Settings {
             Api.backend.time(time => {
                 this.#conf[key].time = new Date(time).valueOf();
                 localStorage.setItem(`${key}|time`, new Date(time).valueOf().toString());
-                Api.backend.client_configs_set(this.#conf, () => resolve(), err => console.error(err));
+                this.#all.settings = this.#conf;
+                Api.backend.client_configs_set(this.#all, () => resolve(), err => console.error(err));
             });
         });
     }

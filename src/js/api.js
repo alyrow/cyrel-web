@@ -186,7 +186,14 @@ class Api {
      */
     client_configs_get(onSuccess, onFailure) {
         this.rpc.call("client_configs_get", {client_id: __CLIENT_ID__}, window.localStorage.getItem("__"))
-            .then(res => onSuccess(JSON.parse(res)))
+            .then(res => {
+                try {
+                    const j = JSON.parse(res);
+                    onSuccess(j? j: {});
+                } catch (e) {
+                    onSuccess({});
+                }
+            })
             .catch(err => {
                 onFailure(err);
                 console.error(err);
