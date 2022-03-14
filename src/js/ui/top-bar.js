@@ -143,7 +143,7 @@ class TopBar {
                         caches.open("res").then(cache => {
                             cache.match("/ressources.json").then(response => {
                                 const expire = new Date(response.headers.get("date"));
-                                expire.setDate(expire.getDate() + 4);
+                                expire.setDate(expire.getDate() + 1);
                                 if (expire < new Date()) {
                                     elem.click();
                                 }

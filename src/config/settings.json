@@ -18,22 +18,6 @@
             "data": "1"
           }
         ]
-      },
-      {
-        "name": "Effets de fond",
-        "path": "hover",
-        "type": "dropdown",
-        "value": [
-          {
-            "name": "ON",
-            "data": "1",
-            "default": true
-          },
-          {
-            "name": "OFF",
-            "data": "0"
-          }
-        ]
       }
     ]
   }
