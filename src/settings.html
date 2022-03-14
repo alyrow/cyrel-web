@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="logged" content="1">
+    <meta name="group" content="0">
+    <title>CYREL - Paramètres</title>
+    <link rel="manifest" href="manifest.json">
+
+    <script src="js/config.js"></script>
+    <script src="dependencies/json-rpc.min.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/settings.js"></script>
+
+    <script src="dependencies/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="dependencies/semantic/dist/semantic.min.css">
+    <script src="dependencies/semantic/dist/semantic.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="js/ui/ui-core.js"></script>
+    <script src="js/ui/template.js"></script>
+</head>
+<body>
+
+<top-bar></top-bar>
+
+
+<div class="ui two column stackable grid">
+    <div class="four wide column">
+        <div id="smenu" class="ui vertical menu" style="margin-left: 0.5vw; width: 100%;">
+            <settings-categories></settings-categories>
+            <a href="groups.html" class="item">
+                <i class="users icon"></i>
+                Groupes
+            </a>
+            <div class="item disabled">
+                Version
+                <div class="ui blue label">__CYREL_WEB_VERSION__</div>
+            </div>
+        </div>
+    </div>
+    <div class="twelve wide column">
+        <div>
+            <div class="ui container segment">
+                <h1 id="stitle"></h1>
+                <div id="scontent"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script defer src="js/ui/top-bar.js"></script>
+<script defer src="js/ui/uiSettings.js"></script>
+</body>
+</html>

@@ -11,6 +11,8 @@ const { spawn, exec } = require('child_process');
 
 const VERSION = "0.2";
 
+let version = "";
+
 class RessourcesGenerator {
     static #exclude = [
         "/ressources.json",
@@ -175,9 +177,9 @@ function dist(configuration, root) {
                 console.log("Creating `departments.json`...");
                 fs.writeFileSync(path.join(root, "config", "departments.json"), JSON.stringify(configuration.departments));
                 console.log("Done!");
-                console.log("Setting up backend url...");
+                console.log("Setting up backend url and client id...");
                 fs.writeFileSync(path.join(root, "js", "api.js"), fs.readFileSync(path.join(root, "js", "api.js")).toString().replace("__BACKEND_URL__", configuration.backend));
-                fs.writeFileSync(path.join(root, "js", "api.js"), fs.readFileSync(path.join(root, "js", "api.js")).toString().replaceAll("__CLIENT_ID__", configuration.client_id));
+                fs.writeFileSync(path.join(root, "js", "api.js"), fs.readFileSync(path.join(root, "js", "api.js")).toString().split("__CLIENT_ID__").join(configuration.client_id));
                 console.log("Done!");
                 console.log("Creating version file...");
                 exec("git log -1 --format=%cd --date=raw", (error, stdout, stderr) => {
@@ -189,8 +191,9 @@ function dist(configuration, root) {
                         console.error(`stderr: ${stderr}`);
                         return;
                     }
-                    const version = VERSION + "." + stdout.split(" ")[0];
+                    version = VERSION + "." + stdout.split(" ")[0];
                     fs.writeFileSync(path.join(root, "version"), version);
+                    fs.writeFileSync(path.join(root, "settings.html"), fs.readFileSync(path.join(root, "settings.html")).toString().replace("__CYREL_WEB_VERSION__", version));
                     console.log("Done!");
                     console.log("Generating `changelog.json`...");
                     const changelog = {};
@@ -237,6 +240,7 @@ switch (args.action) {
                         fs.copyFileSync(file, path.join(root, file.slice(3)));
                         fs.writeFileSync(path.join(root, "js", "api.js"), fs.readFileSync(path.join(root, "js", "api.js")).toString().replace("__BACKEND_URL__", configuration.backend));
                         fs.writeFileSync(path.join(root, "js", "api.js"), fs.readFileSync(path.join(root, "js", "api.js")).toString().replaceAll("__CLIENT_ID__", configuration.client_id));
+                        fs.writeFileSync(path.join(root, "settings.html"), fs.readFileSync(path.join(root, "settings.html")).toString().replace("__CYREL_WEB_VERSION__", version));
                         RessourcesGenerator.generate(root, path.join(root, "ressources.json"));
                     })
                     .on("change", file => {
@@ -244,6 +248,7 @@ switch (args.action) {
                         fs.copyFileSync(file, path.join(root, file.slice(3)));
                         fs.writeFileSync(path.join(root, "js", "api.js"), fs.readFileSync(path.join(root, "js", "api.js")).toString().replace("__BACKEND_URL__", configuration.backend));
                         fs.writeFileSync(path.join(root, "js", "api.js"), fs.readFileSync(path.join(root, "js", "api.js")).toString().replaceAll("__CLIENT_ID__", configuration.client_id));
+                        fs.writeFileSync(path.join(root, "settings.html"), fs.readFileSync(path.join(root, "settings.html")).toString().replace("__CYREL_WEB_VERSION__", version));
                         RessourcesGenerator.generate(root, path.join(root, "ressources.json"));
                     })
                     .on('unlink', file => {

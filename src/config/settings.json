@@ -1,0 +1,40 @@
+[
+  {
+    "name": "Apparence",
+    "icon": "eye",
+    "settings": [
+      {
+        "name": "Thème",
+        "path": "dark",
+        "type": "dropdown",
+        "value": [
+          {
+            "name": "Clair",
+            "data": "0",
+            "default": true
+          },
+          {
+            "name": "Sombre",
+            "data": "1"
+          }
+        ]
+      },
+      {
+        "name": "Effets de fond",
+        "path": "hover",
+        "type": "dropdown",
+        "value": [
+          {
+            "name": "ON",
+            "data": "1",
+            "default": true
+          },
+          {
+            "name": "OFF",
+            "data": "0"
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -45,5 +45,13 @@
     "showInMenu": true,
     "icon": "/images/cysauceKetshup.svg",
     "darkIcon": "/images/cysauceMustard.svg"
+  },
+  {
+    "name": "Paramètres",
+    "url": "/settings.html",
+    "topBar": true,
+    "menu": true,
+    "showInMenu": false,
+    "icon": "/images/user-edit.svg"
   }
 ]
