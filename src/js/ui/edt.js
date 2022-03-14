@@ -465,7 +465,7 @@ UiCore.registerTag("edt", element => {
                         };
                         Api.backend.getSchedule(isoDate(startDate.toISOString()), isoDate(endDate.toISOString()), parseInt(Edt.group), reponse => {
                             Edt.setEdtContainerState(Edt.edtContainerState.READY);
-                            console.log(reponse)
+                            console.log(reponse);
                             edt.setEdt(reponse);
                         }, err => {
                             Edt.setEdtContainerState(Edt.edtContainerState.ERROR);

@@ -3,6 +3,7 @@ class Settings {
     #all = {}
 
     constructor() {
+        let showChangelog = localStorage.getItem("changelog") === "1";
         Config.loadConfig("settings", async settings => {
             let needSync = false;
             let needReload = false;
@@ -43,13 +44,16 @@ class Settings {
                         }
                     }
                     resolve();
-                }, err => console.error(err));
+                }, err => {
+                    console.error(err);
+                    this.#conf.dark = {conf: localStorage.getItem("dark") | "0"};
+                });
             });
             if (needSync) {
                 this.#all.settings = this.#conf;
                 Api.backend.client_configs_set(this.#all, () => {if (needReload) document.location.reload();}, err => console.error(err));
             }
-            if (!needSync && needReload) document.location.reload();
+            if (!needSync && needReload && !showChangelog) document.location.reload();
         });
     }
 
@@ -69,7 +73,10 @@ class Settings {
                 this.#conf[key].time = new Date(time).valueOf();
                 localStorage.setItem(`${key}|time`, new Date(time).valueOf().toString());
                 this.#all.settings = this.#conf;
-                Api.backend.client_configs_set(this.#all, () => resolve(), err => console.error(err));
+                Api.backend.client_configs_set(this.#all, () => resolve(), err => {
+                    console.error(err);
+                    resolve();
+                });
             });
         });
     }

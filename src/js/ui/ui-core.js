@@ -39,8 +39,7 @@ class UiCore {
     }
 
     static get dark() {
-        if (!localStorage.getItem("dark")) localStorage.setItem("dark", "0");
-        else return localStorage.getItem("dark") === "1";
+        return localStorage.getItem("dark") === "1";
     }
 
     static setDarkAutoDestruct() {
@@ -90,8 +89,8 @@ class UiCore {
     }
 
     static switchTheme() {
-        UiCore.dark ? localStorage.setItem("dark", "0") : localStorage.setItem("dark", "1");
-        document.location.reload();
+        const p = UiCore.dark ? Settings.self.setConfig("dark", "0") : Settings.self.setConfig("dark", "1");
+        p.then(() => document.location.reload());
     }
 
     static translateError(err) {
@@ -148,7 +147,8 @@ window.addEventListener("load", () => {
                     actions: [{
                         text: 'OK',
                         class: 'green'
-                    }]
+                    }],
+                    onHide: () => document.location.reload()
                 }).modal('show');
             }
         });

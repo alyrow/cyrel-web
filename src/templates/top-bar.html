@@ -16,13 +16,10 @@
         </div>
 
         <div class="right menu">
-            <a class="ui icon item" onclick="UiCore.switchTheme()">
-                <i class="adjust icon"></i>
-            </a>
             <div if="logged" class="ui icon item dropdown">
                 <i class="text user icon"></i>
                 <div class="menu">
-                    <a class="item" href="groups.html">Mes Groupes</a>
+                    <a class="item" href="settings.html">Paramètres</a>
                     <div if="serviceWorker" class="item" id="sw" style="display: none;">Mettre à jour</div>
                     <div class="divider"></div>
                     <a class="item" onclick="TopBar.logout()" id="logout">
