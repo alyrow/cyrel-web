@@ -421,93 +421,109 @@ let onSelect = () => {
 UiCore.registerTag("edt", element => {
     UiCore.registerTag("edt-select", elt => {
         if (window.navigator.onLine)
-            Api.backend.getMyGroups(myGroups => {
-                new Template("edt-group-select", {
-                    "groups": myGroups
-                }, elt, () => {
-                    if (!UiCore.mobile) {
-                        document.getElementById("pc-zoom").style.display = "block";
-                        if (localStorage.getItem("zoom") === null) localStorage.setItem("zoom", "0");
-                        const checkJquery = $('.toggle.checkbox');
-                        checkJquery.checkbox(Edt.pcZoom ? 'check' : 'uncheck');
-                        checkJquery.checkbox({
-                            onChange: () => {
-                                if (checkJquery.checkbox("is checked"))
-                                    localStorage.setItem("zoom", "1");
-                                else localStorage.setItem("zoom", "0");
-                                document.location.reload();
-                            }
-                        });
+            Api.backend.getAllGroups(allGroups => {
+                Api.backend.getMyGroups(myGroups => {
+                    const groups = [];
+                    for (const g of allGroups) {
+                        if (myGroups.find(el => el.id === g.parent))
+                            groups.push(g);
                     }
-                    const jquerySelect = $('.ui.selection.dropdown');
-                    jquerySelect
-                        .dropdown()
-                    ;
-                    const select = jquerySelect[0];
-                    jquerySelect.dropdown("set selected", select.children[3].children[0].getAttribute("data-value"));
-                    Edt.group = select.children[3].children[0].getAttribute("data-value");
-                    const edt = new Edt(element, 23, 30, 45, 230, 1, UiCore.dark ? Edt.material_dark : Edt.material);
-                    const svg = document.getElementsByTagName("svg")[0];
-                    svg.removeAttribute('height');
-                    svg.setAttribute("width", "100%");
-                    svg.setAttribute("viewBox", "0 0 " + edt.svg._width + " " + edt.svg._height + "");
+                    let first = groups.findIndex(e => myGroups.map(el => el.id).indexOf(e.id) !== -1);
+                    new Template("edt-group-select", {
+                        "groups": groups
+                    }, elt, () => {
+                        if (!UiCore.mobile) {
+                            document.getElementById("pc-zoom").style.display = "block";
+                            if (localStorage.getItem("zoom") === null) localStorage.setItem("zoom", "0");
+                            const checkJquery = $('.toggle.checkbox');
+                            checkJquery.checkbox(Edt.pcZoom ? 'check' : 'uncheck');
+                            checkJquery.checkbox({
+                                onChange: () => {
+                                    if (checkJquery.checkbox("is checked"))
+                                        localStorage.setItem("zoom", "1");
+                                    else localStorage.setItem("zoom", "0");
+                                    document.location.reload();
+                                }
+                            });
+                        }
+                        const jquerySelect = $('.ui.selection.dropdown');
+                        jquerySelect
+                            .dropdown({
+                                onChange: l => {
+                                    try {
+                                        const date =  $('#calendar').calendar("get focusDate");
+                                        onSelect(date);
+                                    } catch (e) {}
+                                }
+                            })
+                        ;
+                        const select = jquerySelect[0];
+                        jquerySelect.dropdown("set selected", select.children[3].children[first].getAttribute("data-value"));
+                        Edt.group = select.children[3].children[0].getAttribute("data-value");
+                        const edt = new Edt(element, 23, 30, 45, 230, 1, UiCore.dark ? Edt.material_dark : Edt.material);
+                        const svg = document.getElementsByTagName("svg")[0];
+                        svg.removeAttribute('height');
+                        svg.setAttribute("width", "100%");
+                        svg.setAttribute("viewBox", "0 0 " + edt.svg._width + " " + edt.svg._height + "");
 
-                    const today = new Date();
-                    today.setHours(0, 0, 0, 0);
-                    today.setHours(-24 * (today.getDay() - 1));
-                    onSelect = function (date) {
-                        Edt.setEdtContainerState(Edt.edtContainerState.LOADING);
-                        let startDate = Edt.getWeekDates(date).start;
-                        let endDate = Edt.getWeekDates(date).end;
-                        const isoDate = (iso_str) => {
-                            if (iso_str.indexOf("Z") === iso_str.length - 1) return iso_str.slice(0, iso_str.length - 1);
-                            else return iso_str;
+                        const today = new Date();
+                        today.setHours(0, 0, 0, 0);
+                        today.setHours(-24 * (today.getDay() - 1));
+                        onSelect = function (date) {
+                            Edt.setEdtContainerState(Edt.edtContainerState.LOADING);
+                            let startDate = Edt.getWeekDates(date).start;
+                            let endDate = Edt.getWeekDates(date).end;
+                            const isoDate = (iso_str) => {
+                                if (iso_str.indexOf("Z") === iso_str.length - 1) return iso_str.slice(0, iso_str.length - 1);
+                                else return iso_str;
+                            };
+                            Api.backend.getSchedule(isoDate(startDate.toISOString()), isoDate(endDate.toISOString()), parseInt(Edt.group), reponse => {
+                                Edt.setEdtContainerState(Edt.edtContainerState.READY);
+                                console.log(reponse);
+                                edt.setEdt(reponse);
+                            }, err => {
+                                Edt.setEdtContainerState(Edt.edtContainerState.ERROR);
+                                $('body')
+                                    .toast({
+                                        class: 'error',
+                                        message: UiCore.translateError(err)
+                                    })
+                                ;
+                            });
                         };
-                        Api.backend.getSchedule(isoDate(startDate.toISOString()), isoDate(endDate.toISOString()), parseInt(Edt.group), reponse => {
-                            Edt.setEdtContainerState(Edt.edtContainerState.READY);
-                            console.log(reponse);
-                            edt.setEdt(reponse);
-                        }, err => {
-                            Edt.setEdtContainerState(Edt.edtContainerState.ERROR);
-                            $('body')
-                                .toast({
-                                    class: 'error',
-                                    message: UiCore.translateError(err)
-                                })
-                            ;
-                        });
-                    };
 
-                    onSelect(new Date());
+                        onSelect(new Date());
 
-                    $('#calendar')
-                        .calendar({
-                            type: 'date',
-                            firstDayOfWeek: 1,
-                            text: {
-                                days: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
-                                months: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', `Juillet`, 'Août', 'Septembre', 'Octobre', 'Novembre', 'Decembre'],
-                                monthsShort: ['Jan', 'Fev', 'Mar', 'Avr', 'Mai', 'Juin', 'Juil', 'Aou', 'Sep', 'Oct', 'Nov', 'Dec'],
-                                today: 'Aujourd\'hui',
-                                now: 'Maintenant',
-                                am: 'AM',
-                                pm: 'PM'
-                            },
-                            disabledDaysOfWeek: [6, 0],
-                            onSelect: onSelect,
-                            minDate: new Date(today.getFullYear(), today.getMonth(), today.getDate() - 14),
-                            maxDate: new Date(today.getFullYear(), today.getMonth(), today.getDate() + 27)
+                        $('#calendar')
+                            .calendar({
+                                type: 'date',
+                                firstDayOfWeek: 1,
+                                text: {
+                                    days: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
+                                    months: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', `Juillet`, 'Août', 'Septembre', 'Octobre', 'Novembre', 'Decembre'],
+                                    monthsShort: ['Jan', 'Fev', 'Mar', 'Avr', 'Mai', 'Juin', 'Juil', 'Aou', 'Sep', 'Oct', 'Nov', 'Dec'],
+                                    today: 'Aujourd\'hui',
+                                    now: 'Maintenant',
+                                    am: 'AM',
+                                    pm: 'PM'
+                                },
+                                disabledDaysOfWeek: [6, 0],
+                                onSelect: onSelect,
+                                minDate: new Date(today.getFullYear(), today.getMonth(), today.getDate() - 14),
+                                maxDate: new Date(today.getFullYear(), today.getMonth(), today.getDate() + 27)
+                            })
+                        ;
+                    });
+                }, err => {
+                    $('body')
+                        .toast({
+                            class: 'error',
+                            message: UiCore.translateError(err)
                         })
                     ;
                 });
-            }, err => {
-                $('body')
-                    .toast({
-                        class: 'error',
-                        message: UiCore.translateError(err)
-                    })
-                ;
             });
+
         else {
             new Template("offline", {}, element.parentElement, () => {
             });
