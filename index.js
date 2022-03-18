@@ -9,7 +9,7 @@ const writeFilePromise = promisify(writeFile);
 const chokidar = require("chokidar");
 const { spawn, exec } = require('child_process');
 
-const VERSION = "0.2";
+const VERSION = "0.3";
 
 let version = "";
 
