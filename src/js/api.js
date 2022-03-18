@@ -231,6 +231,40 @@ class Api {
             });
     }
 
+    /**
+     * Send password reset email
+     * @type {(ldap: number, email: string, onSuccess: function, onFailure: function) => void}
+     * @param ldap Ldap id
+     * @param email User email
+     * @param onSuccess Callback with the time
+     * @param onFailure When an error occur
+     */
+    send_password_reset_code(ldap, email, onSuccess, onFailure) {
+        this.rpc.call("send_password_reset_code", {ldap: ldap, email: email})
+            .then(res => onSuccess(res))
+            .catch(err => {
+                onFailure(err);
+                console.error(err);
+            });
+    }
+
+    /**
+     * Reset the user password
+     * @type {(code: string, password: string, onSuccess: function, onFailure: function) => void}
+     * @param code Verification code sent by email
+     * @param password New password
+     * @param onSuccess Callback with the time
+     * @param onFailure When an error occur
+     */
+    reset_password(code, password, onSuccess, onFailure) {
+        this.rpc.call("reset_password", {code: code, password: password})
+            .then(res => onSuccess(res))
+            .catch(err => {
+                onFailure(err);
+                console.error(err);
+            });
+    }
+
     static checkIfLoggedAndAct(api) {
         const needLogin = document.querySelector('meta[name="logged"]').content === "1";
         if (!needLogin) return;
