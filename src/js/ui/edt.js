@@ -447,19 +447,6 @@ UiCore.registerTag("edt", element => {
                             });
                         }
                         const jquerySelect = $('.ui.selection.dropdown');
-                        jquerySelect
-                            .dropdown({
-                                onChange: l => {
-                                    try {
-                                        const date =  $('#calendar').calendar("get focusDate");
-                                        onSelect(date);
-                                    } catch (e) {}
-                                }
-                            })
-                        ;
-                        const select = jquerySelect[0];
-                        jquerySelect.dropdown("set selected", select.children[3].children[first].getAttribute("data-value"));
-                        Edt.group = select.children[3].children[0].getAttribute("data-value");
                         const edt = new Edt(element, 23, 30, 45, 230, 1, UiCore.dark ? Edt.material_dark : Edt.material);
                         const svg = document.getElementsByTagName("svg")[0];
                         svg.removeAttribute('height');
@@ -492,8 +479,6 @@ UiCore.registerTag("edt", element => {
                             });
                         };
 
-                        onSelect(new Date());
-
                         $('#calendar')
                             .calendar({
                                 type: 'date',
@@ -513,6 +498,21 @@ UiCore.registerTag("edt", element => {
                                 maxDate: new Date(today.getFullYear(), today.getMonth(), today.getDate() + 27)
                             })
                         ;
+
+                        jquerySelect
+                            .dropdown({
+                                onChange: l => {
+                                    try {
+                                        let date =  $('#calendar').calendar("get date");
+                                        if (!date) date = new Date();
+                                        onSelect(date);
+                                    } catch (e) {}
+                                }
+                            })
+                        ;
+                        const select = jquerySelect[0];
+                        Edt.group = select.children[3].children[first].getAttribute("data-value");
+                        jquerySelect.dropdown("set selected", select.children[3].children[first].getAttribute("data-value"));
                     });
                 }, err => {
                     $('body')
