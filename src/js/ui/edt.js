@@ -423,12 +423,22 @@ UiCore.registerTag("edt", element => {
         if (window.navigator.onLine)
             Api.backend.getAllGroups(allGroups => {
                 Api.backend.getMyGroups(myGroups => {
-                    const groups = [];
+                    let groups = [];
                     for (const g of allGroups) {
                         if (myGroups.find(el => el.id === g.parent))
                             groups.push(g);
                     }
                     let first = groups.findIndex(e => myGroups.map(el => el.id).indexOf(e.id) !== -1);
+                    if (groups.length === 0) {
+                        console.error("User seems to have missing groups!");
+                        groups = myGroups;
+                        first = 0;
+                        $('body')
+                            .toast({
+                                class: 'warning',
+                                message: `Une mauvaise configuration semble affecter des fonctionnalités. `
+                            });
+                    }
                     new Template("edt-group-select", {
                         "groups": groups
                     }, elt, () => {
