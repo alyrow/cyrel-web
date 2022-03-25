@@ -1,6 +1,8 @@
 class Groups {
     static join(id) {
-        document.getElementById("dimmer").classList.add("active");
+        try {
+            document.getElementById("dimmer").classList.add("active");
+        } catch (e) {}
         Api.backend.getAllGroups(allGroups => {
             const ids = [];
             const recursive = function (id) {

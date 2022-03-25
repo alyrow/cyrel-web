@@ -60,3 +60,20 @@
 #s-Apparence > div > div > i {
     margin: -.78571429em;
 }
+
+.toast-warning-button {
+    background-color: #f2be2c !important;
+    color: white !important;
+}
+
+.toast-warning-button.inverted {
+    box-shadow: 0 0 0 2px #f2be2c inset !important;
+}
+
+.toast-warning-button:hover {
+    background-color: #e9b933 !important;
+}
+
+.toast-warning-button:active {
+    background-color: #e1b333 !important;
+}

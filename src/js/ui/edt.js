@@ -436,7 +436,21 @@ UiCore.registerTag("edt", element => {
                         $('body')
                             .toast({
                                 class: 'warning',
-                                message: `Une mauvaise configuration semble affecter des fonctionnalités. `
+                                message: `Une mauvaise configuration semble affecter des fonctionnalités.`,
+                                classActions: 'bottom attached',
+                                displayTime: 0,
+                                actions:	[{
+                                    text: 'Résoudre le problème',
+                                    class: 'toast-warning-button',
+                                    click: () => {
+                                        Api.backend.getMyGroups(myGroups => {
+                                            for (const group of myGroups) {
+                                                console.log(group);
+                                                if (group.parent !== null) Groups.join(group.id);
+                                            }
+                                        }, e => console.error(e));
+                                    }
+                                }]
                             });
                     }
                     new Template("edt-group-select", {
