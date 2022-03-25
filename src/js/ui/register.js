@@ -6,9 +6,6 @@ class RegisterSelect {
         }, element, () => {
             $('#register_1')
                 .form({
-                    onSuccess: function () {
-                        document.getElementById("check").click();
-                    },
                     fields: {
                         id: {
                             identifier: 'id',
@@ -76,9 +73,6 @@ document.getElementById("check").onclick = () => {
             elem.classList.remove("loading");
             $('#form-check')
                 .form({
-                    onSuccess: function () {
-                        document.getElementById("continue").click();
-                    },
                     fields: {
                         code: {
                             identifier: 'code',
@@ -111,9 +105,6 @@ document.getElementById("continue").onclick = () => {
             elem.classList.remove("loading");
             $('#register_2')
                 .form({
-                    onSuccess: function () {
-                        document.getElementById("register").click();
-                    },
                     fields: {
                         firstname: {
                             identifier: 'firstname',

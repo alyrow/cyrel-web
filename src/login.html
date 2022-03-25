@@ -32,7 +32,7 @@
     </h1>
 </div>
 <div class="ui segment regular-box" style="margin-top: 4vh;">
-    <div class="ui form">
+    <form method="dialog" class="ui form">
         <div class="field">
             <label>Email</label>
             <input type="email" name="email" placeholder="Email">
@@ -42,10 +42,10 @@
             <input type="password" name="password" placeholder="Mot de passe">
         </div>
 
-        <div id="login" class="ui primary button">Connexion</div>
+        <button id="login" type="submit" class="ui primary button">Connexion</button>
 
         <div class="ui error message"></div>
-    </div>
+    </form>
 </div>
 
 <div class="ui segment regular-box" style="margin-top: 2vh;">

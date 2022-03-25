@@ -37,7 +37,7 @@
     <p>Pour débuter l'inscription merci de vous munir de votre numéro étudiant ainsi que de votre email scolaire.</p>
 </div>
 <div class="ui segment regular-box" style="margin-top: 4vh;">
-    <div id="register_1" class="ui form">
+    <form method="dialog" id="register_1" class="ui form">
         <div class="field">
             <label>Numéro étudiant</label>
             <input type="text" name="id" placeholder="Numéro étudiant">
@@ -60,23 +60,23 @@
                 <div id="email-label" class="ui label">@</div>
             </div>
         </div>
-        <div id="check" class="ui primary button">Continuer</div>
+        <button id="check" type="submit" class="ui primary button">Continuer</button>
         <div class="ui error message"></div>
-    </div>
+    </form>
 </div>
 <div id="check-code" class="ui segment regular-box" style="margin-top: 1vh; display: none;">
     <p>Merci d'entrer votre code de vérification.</p>
-    <div id="form-check" class="ui form">
+    <form method="dialog" id="form-check" class="ui form">
         <div class="field">
             <label>Code de vérification</label>
             <input type="text" name="code" placeholder="Code de vérification">
         </div>
-        <div id="continue" class="ui primary button">Continuer</div>
+        <button id="continue" type="submit" class="ui primary button">Continuer</button>
         <div class="ui error message"></div>
-    </div>
+    </form>
 </div>
 <div id="end" class="ui segment regular-box" style="margin-top: 1vh; display: none;">
-    <div id="register_2" class="ui form">
+    <form method="dialog" id="register_2" class="ui form">
         <div class="two fields">
             <div class="field">
                 <label>Prénom</label>
@@ -95,9 +95,9 @@
             <label>Confirmation du mot de passe</label>
             <input type="password" name="password2" placeholder="Confirmation du mot de passe">
         </div>
-        <div id="register" class="ui primary button">S'inscrire</div>
+        <button id="register" type="submit" class="ui primary button">S'inscrire</button>
         <div class="ui error message"></div>
-    </div>
+    </form>
 </div>
 <br/>
 <script>

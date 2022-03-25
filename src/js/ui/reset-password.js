@@ -1,8 +1,5 @@
 $('#reset_1')
     .form({
-        onSuccess: function () {
-            document.getElementById("check").click();
-        },
         fields: {
             id: {
                 identifier: 'id',
@@ -48,9 +45,6 @@ document.getElementById("check").onclick = () => {
             elem.classList.remove("loading");
             $('#form-check')
                 .form({
-                    onSuccess: function () {
-                        document.getElementById("continue").click();
-                    },
                     fields: {
                         code: {
                             identifier: 'code',
@@ -80,9 +74,6 @@ document.getElementById("continue").onclick = () => {
     if (jquerySelector.form("is valid")) {
         $('#reset_2')
             .form({
-                onSuccess: function () {
-                    document.getElementById("reset").click();
-                },
                 fields: {
                     firstname: {
                         identifier: 'firstname',
