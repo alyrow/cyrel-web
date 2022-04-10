@@ -1,5 +1,9 @@
 $('.ui.form')
     .form({
+        onSuccess: e => {
+            if (e != null)
+                document.getElementById("login").click();
+        },
         fields: {
             email: {
                 identifier: 'email',
