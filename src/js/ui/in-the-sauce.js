@@ -1,8 +1,4 @@
 class InTheSauce {
-    name
-    require
-    subjects
-    marksDb = {}
     static shema = {
         type: "object",
         title: "UE",
@@ -67,6 +63,10 @@ class InTheSauce {
             }
         }
     };
+    name
+    require
+    subjects
+    marksDb = {}
 
     constructor(data, elem, callback) {
         this.name = data.name;
@@ -84,7 +84,7 @@ class InTheSauce {
                 }, document.getElementById("subject-" + subject.name), () => {
                     subject.marks.forEach(mark => {
                         const markElem = document.getElementById(`subject-${subject.name}-${mark.name}`);
-                        if (this.marksDb[`${this.name}-${subject.name}-${mark.name}`] !== null &&this.marksDb[`${this.name}-${subject.name}-${mark.name}`] !== undefined)
+                        if (this.marksDb[`${this.name}-${subject.name}-${mark.name}`] !== null && this.marksDb[`${this.name}-${subject.name}-${mark.name}`] !== undefined)
                             markElem.children[0].value = this.marksDb[`${this.name}-${subject.name}-${mark.name}`];
                         markElem.addEventListener("input", () => {
                             if (markElem.children[0].value === "") {
@@ -126,30 +126,24 @@ class InTheSauce {
             const markN1 = [];
             const markOther = [];
             let marks = [];
-            for (let j = 0; j < this.subjects[i].marks.length; j++)  {
+            for (let j = 0; j < this.subjects[i].marks.length; j++) {
                 if (this.marksDb[`${this.name}-${this.subjects[i].name}-${this.subjects[i].marks[j].name}`] !== null && this.marksDb[`${this.name}-${this.subjects[i].name}-${this.subjects[i].marks[j].name}`] !== undefined) {
                     if (this.subjects[i].marks[j]["n-1"]) {
-                        markN1.push({m: this.marksDb[`${this.name}-${this.subjects[i].name}-${this.subjects[i].marks[j].name}`], c: this.subjects[i].marks[j].coef});
+                        markN1.push({
+                            m: this.marksDb[`${this.name}-${this.subjects[i].name}-${this.subjects[i].marks[j].name}`],
+                            c: this.subjects[i].marks[j].coef
+                        });
                     } else {
-                        markOther.push({m: this.marksDb[`${this.name}-${this.subjects[i].name}-${this.subjects[i].marks[j].name}`], c: this.subjects[i].marks[j].coef});
+                        markOther.push({
+                            m: this.marksDb[`${this.name}-${this.subjects[i].name}-${this.subjects[i].marks[j].name}`],
+                            c: this.subjects[i].marks[j].coef
+                        });
                     }
                 }
             }
             switch (n1Rule) {
                 case "all": {
                     if (markN1.length > 0)
-                    markN1.splice(markN1.indexOf(markN1.reduce(
-                        (acc, mark) =>
-                            acc.m < mark.m
-                                ? acc
-                                : mark,
-                        0
-                    )), 1);
-                    break;
-                }
-                case "partial": {
-                    if (markN1.length > 0)
-                    if (markN1.reduce((p, c) => p + c.m * c.c, 0) / markN1.reduce((p, c) => p + c.c, 0) < 10) {
                         markN1.splice(markN1.indexOf(markN1.reduce(
                             (acc, mark) =>
                                 acc.m < mark.m
@@ -157,7 +151,19 @@ class InTheSauce {
                                     : mark,
                             0
                         )), 1);
-                    }
+                    break;
+                }
+                case "partial": {
+                    if (markN1.length > 0)
+                        if (markN1.reduce((p, c) => p + c.m * c.c, 0) / markN1.reduce((p, c) => p + c.c, 0) < 10) {
+                            markN1.splice(markN1.indexOf(markN1.reduce(
+                                (acc, mark) =>
+                                    acc.m < mark.m
+                                        ? acc
+                                        : mark,
+                                0
+                            )), 1);
+                        }
                     break;
                 }
             }
@@ -226,7 +232,7 @@ if (localStorage.getItem("sauce") === null) {
                 document.location.reload();
             },
             onDeny: () => false,
-            closable  : false
+            closable: false
         })
         .modal('show')
     ;
@@ -247,7 +253,7 @@ if (localStorage.getItem("sauce") === null) {
                     no_additional_properties: true,
                     disable_properties: true
                 });
-                editor.on('ready',() => {
+                editor.on('ready', () => {
                     editor.setValue(JSON.parse(localStorage.getItem("sauce")));
                 });
                 $('.ui.e.modal')

@@ -6,6 +6,14 @@ function test() {
 class UiCore {
     static customTags = [];
 
+    static get mobile() {
+        return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|SamsungBrowser/i.test(navigator.userAgent);
+    }
+
+    static get dark() {
+        return localStorage.getItem("dark") === "1";
+    }
+
     /**
      * Register a custom tag
      * @type {(tagName: string, tagManager: function) => void}
@@ -32,14 +40,6 @@ class UiCore {
             if (customTag.tagName.toLowerCase() === tagName) customTag.tagManager(element);
         });
         parent.appendChild(element);
-    }
-
-    static get mobile() {
-        return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|SamsungBrowser/i.test(navigator.userAgent);
-    }
-
-    static get dark() {
-        return localStorage.getItem("dark") === "1";
     }
 
     static setDarkAutoDestruct() {

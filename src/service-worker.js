@@ -77,7 +77,8 @@ const updateCache = () => {
                             found = true;
                             if (local.hash !== res.hash) {
                                 console.log("Updating " + local.url);
-                                /*if (local.url === "/service-worker.js") */appUpdate = true;
+                                /*if (local.url === "/service-worker.js") */
+                                appUpdate = true;
                                 urls.push(res.url);
                             }
                         }

@@ -1,4 +1,6 @@
 class Config {
+    static configs = {};
+
     /**
      * Load a config file
      * @type {(name: string, callback: function) => Config}
@@ -19,8 +21,6 @@ class Config {
         xhttp.open("GET", "config/" + name + ".json", true);
         xhttp.send();
     }
-
-    static configs = {};
 
     /**
      * Return an loaded config

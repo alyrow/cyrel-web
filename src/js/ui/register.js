@@ -7,52 +7,30 @@ class RegisterSelect {
             $('#register_1')
                 .form({
                     onSuccess: e => {
-                        if (e != null)
-                            document.getElementById("check").click();
-                    },
-                    fields: {
+                        if (e != null) document.getElementById("check").click();
+                    }, fields: {
                         id: {
-                            identifier: 'id',
-                            rules: [
-                                {
-                                    type: 'empty',
-                                    prompt: 'Merci de renseigner votre numéro étudiant'
-                                },
-                                {
-                                    type: 'integer',
-                                    prompt: 'Merci de renseigner un numéro d\'étudiant valide'
-                                },
-                                {
-                                    type: 'exactLength[8]',
-                                    prompt: 'Un numéro étudiant fait 8 caractères'
-                                }
-                            ]
-                        },
-                        department: {
-                            identifier: 'department',
-                            rules: [
-                                {
-                                    type: 'empty',
-                                    prompt: 'Merci de renseigner votre département'
-                                }
-                            ]
-                        },
-                        email: {
-                            identifier: 'email',
-                            rules: [
-                                {
-                                    type: 'empty',
-                                    prompt: 'Merci de renseigner votre email'
-                                },
-                                {
-                                    type: 'doesntContain[@]',
-                                    prompt: 'Merci de renseigner que la partie avant le "@" de votre email'
-                                }
-                            ]
+                            identifier: 'id', rules: [{
+                                type: 'empty', prompt: 'Merci de renseigner votre numéro étudiant'
+                            }, {
+                                type: 'integer', prompt: 'Merci de renseigner un numéro d\'étudiant valide'
+                            }, {
+                                type: 'exactLength[8]', prompt: 'Un numéro étudiant fait 8 caractères'
+                            }]
+                        }, department: {
+                            identifier: 'department', rules: [{
+                                type: 'empty', prompt: 'Merci de renseigner votre département'
+                            }]
+                        }, email: {
+                            identifier: 'email', rules: [{
+                                type: 'empty', prompt: 'Merci de renseigner votre email'
+                            }, {
+                                type: 'doesntContain[@]',
+                                prompt: 'Merci de renseigner que la partie avant le "@" de votre email'
+                            }]
                         }
                     }
-                })
-            ;
+                });
         });
     }
 
@@ -78,23 +56,15 @@ document.getElementById("check").onclick = () => {
             $('#form-check')
                 .form({
                     onSuccess: e => {
-                        if (e != null)
-                            document.getElementById("continue").click();
-                    },
-                    fields: {
+                        if (e != null) document.getElementById("continue").click();
+                    }, fields: {
                         code: {
-                            identifier: 'code',
-                            rules: [
-                                {
-                                    type: 'empty',
-                                    prompt: 'Merci de renseigner votre code de vérification'
-                                }
-                            ]
+                            identifier: 'code', rules: [{
+                                type: 'empty', prompt: 'Merci de renseigner votre code de vérification'
+                            }]
                         }
                     }
-                })
-            ;
-            document.getElementById("check").style.display = "none";
+                });document.getElementById("check").style.display = "none";
             document.getElementById("check-code").style.display = "block";
         }, failure => {
             elem.classList.remove("loading");
@@ -114,49 +84,27 @@ document.getElementById("continue").onclick = () => {
             $('#register_2')
                 .form({
                     onSuccess: e => {
-                        if (e != null)
-                            document.getElementById("register").click();
-                    },
-                    fields: {
+                        if (e != null) document.getElementById("register").click();
+                    }, fields: {
                         firstname: {
-                            identifier: 'firstname',
-                            rules: [
-                                {
-                                    type: 'empty',
-                                    prompt: 'Merci de renseigner votre prénom'
-                                }
-                            ]
-                        },
-                        lastname: {
-                            identifier: 'lastname',
-                            rules: [
-                                {
-                                    type: 'empty',
-                                    prompt: 'Merci de renseigner votre nom'
-                                }
-                            ]
-                        },
-                        password: {
-                            identifier: 'password',
-                            rules: [
-                                {
-                                    type: 'empty',
-                                    prompt: 'Merci de renseigner votre mot de passe'
-                                },
-                                {
-                                    type: 'minLength[8]',
-                                    prompt: 'Votre mot de passe doit faire {ruleValue} caractères minimum'
-                                }
-                            ]
-                        },
-                        password2: {
-                            identifier: 'password2',
-                            rules: [
-                                {
-                                    type: 'match[password]',
-                                    prompt: 'Merci de confirmer votre mot de passe'
-                                }
-                            ]
+                            identifier: 'firstname', rules: [{
+                                type: 'empty', prompt: 'Merci de renseigner votre prénom'
+                            }]
+                        }, lastname: {
+                            identifier: 'lastname', rules: [{
+                                type: 'empty', prompt: 'Merci de renseigner votre nom'
+                            }]
+                        }, password: {
+                            identifier: 'password', rules: [{
+                                type: 'empty', prompt: 'Merci de renseigner votre mot de passe'
+                            }, {
+                                type: 'minLength[8]',
+                                prompt: 'Votre mot de passe doit faire {ruleValue} caractères minimum'
+                            }]
+                        }, password2: {
+                            identifier: 'password2', rules: [{
+                                type: 'match[password]', prompt: 'Merci de confirmer votre mot de passe'
+                            }]
                         }
                     }
                 })

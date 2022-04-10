@@ -53,7 +53,7 @@ class TopBar {
                     sidebar.style.boxShadow = `0 0 0 0px rgba(0, 0, 0, 0)`
                     if (evt.touches.length === 1 && visualViewport.scale === 1 && Math.abs(xDiff) > Math.abs(yDiff)) {/*most significant*/
                         if (xDiff < 0) { // swipe left
-                            jSidebar = $('.ui.sidebar').sidebar({ closable: false }).sidebar('show');
+                            jSidebar = $('.ui.sidebar').sidebar({closable: false}).sidebar('show');
                         }
                     }
                     break;

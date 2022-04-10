@@ -24,9 +24,9 @@ if (window.navigator.onLine)
             if (course === null) return course;
             if (course.module === null) course.module = course.category;
             if (course.teacher === null) course.teacher = "Inconnu";
-            if (typeof(course.start) === 'object')
+            if (typeof (course.start) === 'object')
                 course.start = course.start.getHours() + "h" + (course.start.getMinutes() < 10 ? "0" : "") + course.start.getMinutes();
-            if (typeof(course.end) === 'object')
+            if (typeof (course.end) === 'object')
                 course.end = course.end.getHours() + "h" + (course.end.getMinutes() < 10 ? "0" : "") + course.end.getMinutes();
             return course;
         }

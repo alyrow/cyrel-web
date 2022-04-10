@@ -1,4 +1,48 @@
 class Edt {
+    static courses = []
+    static material = {
+        "primary": "#000000",
+        "secondary": "rgba(0,0,0,0.5)",
+        "text": "rgba(0,0,0,0.87)",
+        "background": "#fafafa",
+        "td": "#4A4AFF",
+        "cm": "#FF0000",
+        "tp": "#FE8BAD",
+        "exam": "#00FFFF",
+        "tiers": "#6FFFFF"
+    };
+    static material_dark = {
+        "primary": "#9ba1aa",
+        "secondary": "#72767d",
+        "text": "#dcddde",
+        "background": "#1b1c1d",
+        "td": "#4A4AFF",
+        "cm": "#FF0000",
+        "tp": "#FE8BAD",
+        "exam": "#00FFFF",
+        "tiers": "#6FFFFF"
+    };
+    static discord = {
+        "primary": "#9ba1aa",
+        "secondary": "#72767d",
+        "text": "#dcddde",
+        "background": "#36393f",
+        "td": "#4A4AFF",
+        "cm": "#FF0000",
+        "tp": "#FE8BAD",
+        "exam": "#00FFFF",
+        "tiers": "#6FFFFF"
+    };
+    /**
+     * Enum of edt container states
+     * @type {{READY: number, LOADING: number, ERROR: number}}
+     */
+    static edtContainerState = {
+        READY: 0,
+        LOADING: 1,
+        ERROR: 2
+    }
+    static group
     svg;
     id;
     trick = false;
@@ -21,7 +65,46 @@ class Edt {
         this.svg = this.drawTable(element.id, lines, spacing, dayHeight, dayLength, margin, theme);
     }
 
-    static courses = []
+    static get pcZoom() {
+        return localStorage.getItem("zoom") === "1";
+    }
+
+    /**
+     * Set the edt container state
+     * @type {(state: Edt.edtContainerState) => void}
+     * @param state State to set
+     */
+    static setEdtContainerState(state) {
+        switch (state) {
+            case this.edtContainerState.READY:
+                document.getElementById("edt-dimmer").classList.remove("active");
+                break;
+            case this.edtContainerState.LOADING:
+                document.getElementById("edt-dimmer").classList.add("active");
+                document.getElementById("edt-loader").classList.remove("disabled");
+                break;
+            case this.edtContainerState.ERROR:
+                document.getElementById("edt-dimmer").classList.add("active");
+                document.getElementById("edt-loader").classList.add("disabled");
+                break;
+        }
+    }
+
+    static setGroup(group) {
+        this.group = group;
+        //onSelect($('#calendar').calendar("get focus date"));
+    }
+
+    static getWeekDates(date) {
+        let startDate = new Date(date);
+        startDate.setHours(0, 0, 0, 0);
+        let endDate = new Date(startDate);
+        const diffMonday = startDate.getDay() - 1;
+        const diffSaturday = 6 - endDate.getDay();
+        startDate.setHours(-24 * diffMonday);
+        endDate.setHours(24 * diffSaturday);
+        return {start: startDate, end: endDate};
+    }
 
     /**
      * Set the schedule
@@ -324,95 +407,6 @@ class Edt {
             parseInt(result[3], 16)
         ] : null;
     }
-
-    static material = {
-        "primary": "#000000",
-        "secondary": "rgba(0,0,0,0.5)",
-        "text": "rgba(0,0,0,0.87)",
-        "background": "#fafafa",
-        "td": "#4A4AFF",
-        "cm": "#FF0000",
-        "tp": "#FE8BAD",
-        "exam": "#00FFFF",
-        "tiers": "#6FFFFF"
-    };
-
-    static material_dark = {
-        "primary": "#9ba1aa",
-        "secondary": "#72767d",
-        "text": "#dcddde",
-        "background": "#1b1c1d",
-        "td": "#4A4AFF",
-        "cm": "#FF0000",
-        "tp": "#FE8BAD",
-        "exam": "#00FFFF",
-        "tiers": "#6FFFFF"
-    };
-
-    static discord = {
-        "primary": "#9ba1aa",
-        "secondary": "#72767d",
-        "text": "#dcddde",
-        "background": "#36393f",
-        "td": "#4A4AFF",
-        "cm": "#FF0000",
-        "tp": "#FE8BAD",
-        "exam": "#00FFFF",
-        "tiers": "#6FFFFF"
-    };
-
-    /**
-     * Enum of edt container states
-     * @type {{READY: number, LOADING: number, ERROR: number}}
-     */
-    static edtContainerState = {
-        READY: 0,
-        LOADING: 1,
-        ERROR: 2
-    }
-
-    /**
-     * Set the edt container state
-     * @type {(state: Edt.edtContainerState) => void}
-     * @param state State to set
-     */
-    static setEdtContainerState(state) {
-        switch (state) {
-            case this.edtContainerState.READY:
-                document.getElementById("edt-dimmer").classList.remove("active");
-                break;
-            case this.edtContainerState.LOADING:
-                document.getElementById("edt-dimmer").classList.add("active");
-                document.getElementById("edt-loader").classList.remove("disabled");
-                break;
-            case this.edtContainerState.ERROR:
-                document.getElementById("edt-dimmer").classList.add("active");
-                document.getElementById("edt-loader").classList.add("disabled");
-                break;
-        }
-    }
-
-    static group
-
-    static setGroup(group) {
-        this.group = group;
-        //onSelect($('#calendar').calendar("get focus date"));
-    }
-
-    static get pcZoom() {
-        return localStorage.getItem("zoom") === "1";
-    }
-
-    static getWeekDates(date) {
-        let startDate = new Date(date);
-        startDate.setHours(0, 0, 0, 0);
-        let endDate = new Date(startDate);
-        const diffMonday = startDate.getDay() - 1;
-        const diffSaturday = 6 - endDate.getDay();
-        startDate.setHours(-24 * diffMonday);
-        endDate.setHours(24 * diffSaturday);
-        return {start: startDate, end: endDate};
-    }
 }
 
 let onSelect = () => {
@@ -439,7 +433,7 @@ UiCore.registerTag("edt", element => {
                                 message: `Une mauvaise configuration semble affecter des fonctionnalités.`,
                                 classActions: 'bottom attached',
                                 displayTime: 0,
-                                actions:	[{
+                                actions: [{
                                     text: 'Résoudre le problème',
                                     class: 'toast-warning-button',
                                     click: () => {
@@ -527,10 +521,11 @@ UiCore.registerTag("edt", element => {
                             .dropdown({
                                 onChange: l => {
                                     try {
-                                        let date =  $('#calendar').calendar("get date");
+                                        let date = $('#calendar').calendar("get date");
                                         if (!date) date = new Date();
                                         onSelect(date);
-                                    } catch (e) {}
+                                    } catch (e) {
+                                    }
                                 }
                             })
                         ;

@@ -1,5 +1,4 @@
 class Api {
-    static _backend = null;
     rpc
 
     /**
@@ -13,6 +12,8 @@ class Api {
             onerror: fatalError
         });
     }
+
+    static _backend = null;
 
     /**
      * Return an instance of the api
@@ -33,6 +34,35 @@ class Api {
     static set backend(no) {
         if (Api._backend !== null) console.error("Unexpected action blocked");
         else Api._backend = no;
+    }
+
+    static checkIfLoggedAndAct(api) {
+        const needLogin = document.querySelector('meta[name="logged"]').content === "1";
+        if (!needLogin) return;
+        const act = () => {
+            document.location.href = "/login.html";
+        };
+
+        if (!window.localStorage.getItem("__")) {
+            act();
+            return;
+        }
+        api.isLogged(bool => {
+            if (!bool) {
+                window.localStorage.removeItem("__");
+                act();
+            }
+        }, err => console.error(err))
+    }
+
+    static checkIfGroupAndAct(api) {
+        const needGroup = document.querySelector('meta[name="group"]').content === "1";
+        if (!needGroup) return;
+        api.getMyGroups(groups => {
+            if (groups.length === 0) {
+                document.location.href = "/groups.html";
+            }
+        }, err => console.error(err))
     }
 
     /**
@@ -189,7 +219,7 @@ class Api {
             .then(res => {
                 try {
                     const j = JSON.parse(res);
-                    onSuccess(j? j: {});
+                    onSuccess(j ? j : {});
                 } catch (e) {
                     onSuccess({});
                 }
@@ -208,7 +238,10 @@ class Api {
      * @param onFailure When an error occur
      */
     client_configs_set(config, onSuccess, onFailure) {
-        this.rpc.call("client_configs_set", {client_id: __CLIENT_ID__, config: JSON.stringify(config)}, window.localStorage.getItem("__"))
+        this.rpc.call("client_configs_set", {
+            client_id: __CLIENT_ID__,
+            config: JSON.stringify(config)
+        }, window.localStorage.getItem("__"))
             .then(res => onSuccess(res))
             .catch(err => {
                 onFailure(err);
@@ -263,35 +296,6 @@ class Api {
                 onFailure(err);
                 console.error(err);
             });
-    }
-
-    static checkIfLoggedAndAct(api) {
-        const needLogin = document.querySelector('meta[name="logged"]').content === "1";
-        if (!needLogin) return;
-        const act = () => {
-            document.location.href = "/login.html";
-        };
-
-        if (!window.localStorage.getItem("__")) {
-            act();
-            return;
-        }
-        api.isLogged(bool => {
-            if (!bool) {
-                window.localStorage.removeItem("__");
-                act();
-            }
-        }, err => console.error(err))
-    }
-
-    static checkIfGroupAndAct(api) {
-        const needGroup = document.querySelector('meta[name="group"]').content === "1";
-        if (!needGroup) return;
-        api.getMyGroups(groups => {
-            if (groups.length === 0) {
-                document.location.href = "/groups.html";
-            }
-        }, err => console.error(err))
     }
 }
 
