@@ -52,7 +52,15 @@ class Api {
                 window.localStorage.removeItem("__");
                 act();
             }
-        }, err => console.error(err))
+        }, err => {
+            console.error(err);
+            Config.loadConfig("errors", errors => {
+                if (err.code === errors.ExpiredSignature.code) {
+                    window.localStorage.removeItem("__");
+                    act();
+                }
+            });
+        })
     }
 
     static checkIfGroupAndAct(api) {

@@ -26,5 +26,9 @@
   "UnknownClient": {
     "code": 6,
     "message": "Le client fournit est inconnu"
+  },
+  "ExpiredSignature": {
+    "code": -32000,
+    "message": "Information de connexion expiré"
   }
 }
