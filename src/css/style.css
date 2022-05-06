@@ -77,3 +77,7 @@
 .toast-warning-button:active {
     background-color: #e1b333 !important;
 }
+
+.today-text {
+    color: #2185d0;
+}

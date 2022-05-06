@@ -513,7 +513,14 @@ UiCore.registerTag("edt", element => {
                                 disabledDaysOfWeek: [6, 0],
                                 onSelect: onSelect,
                                 minDate: new Date(today.getFullYear(), today.getMonth(), today.getDate() - 14),
-                                maxDate: new Date(today.getFullYear(), today.getMonth(), today.getDate() + 27)
+                                maxDate: new Date(today.getFullYear(), today.getMonth(), today.getDate() + 48),
+                                eventDates: [
+                                    {
+                                        date: new Date(),
+                                        message: "Aujourd'hui",
+                                        class: "today-text"
+                                    }
+                                ]
                             })
                         ;
 
